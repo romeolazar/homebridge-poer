@@ -1,0 +1,60 @@
+{
+  "pluginAlias": "PoerSmart",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "### Poer Smart Thermostat Configuration\n\nTo retrieve your API key:\n1. Open the **Poer Smart** mobile app.\n2. Navigate to **Settings** &rarr; **Third-Party Platform** &rarr; **Home Assistant**.\n3. Generate or copy your API key (begins with `eu` or `cn`).",
+  "schema": {
+    "type": "object",
+    "required": [
+      "apiKey"
+    ],
+    "properties": {
+      "name": {
+        "title": "Platform Name",
+        "type": "string",
+        "default": "Poer",
+        "description": "Custom name for the platform plugin."
+      },
+      "apiKey": {
+        "title": "Poer API Key",
+        "type": "string",
+        "description": "Your API key from the Poer Smart mobile app (begins with 'cn' or 'eu').",
+        "placeholder": "eu1234567890abcdef...",
+        "required": true
+      },
+      "refreshInterval": {
+        "title": "Polling Interval (Seconds)",
+        "type": "integer",
+        "default": 30,
+        "minimum": 10,
+        "maximum": 600,
+        "description": "How frequently to query Poer Cloud for temperature and state updates (default: 30s)."
+      },
+      "showEcoSwitch": {
+        "title": "Expose Eco Mode Switch",
+        "type": "boolean",
+        "default": true,
+        "description": "Expose an Eco Mode switch in Apple Home to easily switch between normal Heating and Eco / Away temperature."
+      },
+      "debug": {
+        "title": "Enable Debug Logging",
+        "type": "boolean",
+        "default": false,
+        "description": "Show verbose API request and response details in the Homebridge log."
+      }
+    }
+  },
+  "layout": [
+    "apiKey",
+    {
+      "type": "flex",
+      "flex-flow": "row wrap",
+      "items": [
+        "name",
+        "refreshInterval"
+      ]
+    },
+    "showEcoSwitch",
+    "debug"
+  ]
+}
